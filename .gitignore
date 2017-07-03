@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/AssignmentAngular/bin
+/AssignmentAngular/obj/Debug
+/packages
+/UnitTestProject/bin/Debug
+/UnitTestProject/obj/Debug

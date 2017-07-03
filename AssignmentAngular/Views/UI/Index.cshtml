@@ -1,0 +1,103 @@
+﻿<html>
+<head>
+    <title></title>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/AppCode/app.js"></script>
+    <script src="~/Scripts/AppCode/weatherDataSource.js"></script>
+    <script src="~/Scripts/AppCode/populateDataController.js"></script>
+</head>
+
+<body>
+    <form action="" name="myform">
+        <div ng-controller="populateDataController" class="form-horizontal">
+            <br />
+            <div class="form-group">
+                <label for="Country"
+                       class="col-md-1 control-label">Country:</label>
+                <div class="col-md-2">
+                    <input id="Country" type="text"
+                           ng-model="CountryName"
+                           class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="Message"
+                           class="col-md-push-3 control-label" style="color:red">{{Message}}</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-1 col-md-10">
+                    <input type="button"
+                           class="btn btn-default" ng-disabled="!CountryName" value="PopulateCities" ng-click="PopulateCities()" />
+                </div>
+            </div>
+
+            <div>
+                <label for="City"
+                       class="col-md-1 control-label">City:</label>
+                <select id="City" ng-model="SelectedCity" class="dropdown form-control" required>
+                    <option value="" selected>-- Choose city --</option>
+                    <option ng-repeat="CitiesObject in Cities"
+                            value="{{CitiesObject.City}}">
+                        {{CitiesObject.City}}
+                    </option>
+                </select>
+            </div>
+            <br />
+            <div class="form-group">
+                <div class="col-md-offset-1 col-md-10">
+                    <input type="Button"
+                           class="btn btn-default" ng-disabled="!SelectedCity" value="DisplayWeatherData" ng-click="getWeatherInformation()" />
+                </div>
+            </div>
+            <div ng-show="ShowWeather">
+                <table border="1">
+                    <tr style="background-color: lightgray;">
+                        <th width="15%">Location (Latt/Long)</th>
+                        <th width="15%">Time</th>
+                        <th width="10%">Wind</th>
+                        <th width="10%">Visibility</th>
+                        <th width="10%">Sky conditions</th>
+                        <th width="10%">Temperature</th>
+                        <th width="10%">Dew Point</th>
+                        <th width="15%">Relative Humidity</th>
+                        <th width="10%">Pressure</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            {{WeatherInfo.coord.lat}} {{WeatherInfo.coord.lon}}
+                        </td>
+                        <td>
+                            {{WeatherInfo.Time}}
+                        </td>
+                        <td>
+                            {{WeatherInfo.wind.speed}}
+                        </td>
+                        <td>
+                            {{WeatherInfo.visibility}}
+                        </td>
+                        <td>
+                            {{WeatherInfo.weather.o.description}}
+                        </td>
+                        <td>
+                            {{WeatherInfo.main.temp}}
+                        </td>
+                        <td>
+                            {{WeatherInfo.wind.deg}}
+                        </td>
+                        <td>
+                            {{WeatherInfo.main.humidity}}
+                        </td>
+                        <td>
+                            {{WeatherInfo.wind.main.pressure}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+
+
+
